@@ -10,7 +10,6 @@ const Student = (props) => {
     for (let i = 0; i < nums.length; i++) {
       sum += parseInt(nums[i]);
     }
-    console.log(sum);
 
     return (sum/nums.length).toFixed(2)
   }
@@ -23,6 +22,11 @@ const Student = (props) => {
       <p>Company: {props.student.company}</p>
       <p>Skill: {props.student.skill}</p>
       <p>Average: {calculateAverage(props.student.grades)}%</p>
+      <ul>
+      {props.student.grades.map(function(listValue,index){
+        return <li key={listValue}>Test {index}: {listValue}%</li>
+      })}
+      </ul>
     </div>
   );
 }

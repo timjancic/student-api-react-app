@@ -23,7 +23,7 @@ function App() {
     getStudentsData();
   }, []);
 
-  if (!students.length) { return (<div> Problem Reaching API </div>)}
+  if (!students.length) { return (<div> Problem Reaching API </div>) }
 
   return (
     <div>
