@@ -1,33 +1,38 @@
 import React, {Component} from "react";
-import logo from './logo.svg';
+import { useState, useEffect } from "react";
 import './App.css';
+import Student from './components/student.jsx'
 
-class App extends Component {
-  constructor() {
-    super();
+function App() {
+  const [students, setStudents] = useState([]);
+  const [studentsFiltered, setStudentsFiltered] = useState([]);
+  const [searchFilter, setSearchFilter] = useState("");
 
-    this.state = {}
 
-    let dataAPI;
-
-    //call the fetch function
+  async function getStudentsData() {
     fetch('https://api.hatchways.io/assessment/students')
     .then(res => res.json())//response type
     .then(data => {
-      //console.log(data);
-      dataAPI = data.students;
-      this.state.students = dataAPI;
+      //console.log(data.students);
+      setStudents(data.students);
     });
-
   }
 
-  render () {
-    return (
-      <div className="App">
-        <p>Placeholder</p>
-      </div>
-    );
-  }
+  //call function once per render
+  useEffect(() => {
+    getStudentsData();
+  }, []);
+
+  if (!students.length) { return (<div> Problem Reaching API </div>)}
+
+  return (
+    <div>
+      <Student
+        student={students[0]}
+      />
+    </div>
+  );
+
 
 }
 
