@@ -27,10 +27,13 @@ function App() {
   if (!students.length) { return (<div> Problem Reaching API </div>) }
 
   return (
-    <div className="bg-secondary vh-100">
-      <div className="container bg-light border" style={{width: "800px"}}>
+    <div className="vh-100 d-flex align-items-center" style={{background: "#f3f3f3"}}>
+      <div className="container bg-white border rounded overflow-auto shadow" style={{width: "800px", height: "600px"}}>
         <Student
           student={students[0]}
+        />
+        <Student
+          student={students[1]}
         />
       </div>
 
