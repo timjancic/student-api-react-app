@@ -7,6 +7,7 @@ function App() {
   const [students, setStudents] = useState([]);
   const [studentsFiltered, setStudentsFiltered] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
+  const [tagFilter, setTagFilter] = useState("");
 
 
   async function getStudentsData() {
@@ -26,10 +27,13 @@ function App() {
   if (!students.length) { return (<div> Problem Reaching API </div>) }
 
   return (
-    <div>
-      <Student
-        student={students[0]}
-      />
+    <div className="bg-secondary vh-100">
+      <div className="container bg-light border" style={{width: "800px"}}>
+        <Student
+          student={students[0]}
+        />
+      </div>
+
     </div>
   );
 

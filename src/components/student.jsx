@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-
-//<h2>{props.student.firstName} {props.student.lastName}</h2>
+import React, {Component} from 'react';
+import {useState, useEffect} from "react";
 
 const Student = (props) => {
-  console.log(props.student);
+  const [tagList, setTagList] = useState(["tagTest1", "tagTest2"]);
+  const [tagInput, setTagInput] = useState("");
+  const [showGrades, setShowGrades] = useState(false);
 
   function calculateAverage(nums) {
     let sum = 0;
@@ -11,24 +12,80 @@ const Student = (props) => {
       sum += parseInt(nums[i]);
     }
 
-    return (sum/nums.length).toFixed(2)
+    return (sum / nums.length).toFixed(2)
   }
 
-  return (
-    <div>
-      <img src={props.student.pic} />
-      <h2>{props.student.firstName} {props.student.lastName}</h2>
-      <p>Email: {props.student.email}</p>
-      <p>Company: {props.student.company}</p>
-      <p>Skill: {props.student.skill}</p>
-      <p>Average: {calculateAverage(props.student.grades)}%</p>
-      <ul>
-      {props.student.grades.map(function(listValue,index){
-        return <li key={listValue}>Test {index}: {listValue}%</li>
-      })}
-      </ul>
+  function handleShowGrades() {
+    showGrades
+      ? setShowGrades(false)
+      : setShowGrades(true);
+  }
+
+  function getButtonClass() {
+    let currentClass = (
+      showGrades
+      ? "list-unstyled px-1"
+      : "visually-hidden");
+    return currentClass;
+  }
+
+  return (<div className="d-flex">
+    <div className="justify-content-end mt-2">
+      <img src={props.student.pic} className="rounded-circle border" alt="avatar" width="150" height="150"/>
     </div>
-  );
+    <div className="container">
+      <div className="row justify-content-between">
+        <h1 className="col">{props.student.firstName}
+          {" "}
+          {props.student.lastName}
+        </h1>
+        <button type="button" className="col-auto" onClick={handleShowGrades} style={{
+            color: "darkgray",
+            fontSize: "50px",
+            lineHeight: "50px",
+            border: "none",
+            background: "white"
+          }}>
+          {showGrades ? "-" : "+"}
+        </button>
+      </div>
+
+      <div className="px-4 lead">
+        <p className="my-0">Email: {props.student.email}</p>
+        <p className="my-0">Company: {props.student.company}</p>
+        <p className="my-0">Skill: {props.student.skill}</p>
+        <p className="my-0 mb-1">Average: {calculateAverage(props.student.grades)}%</p>
+        <ul className={getButtonClass()}>
+          {
+            props.student.grades.map((listValue, index) => {
+              return (<li key={listValue}>Test {index + 1}: {listValue}%</li>)
+            })
+          }
+        </ul>
+      </div>
+      <div className="container mb-2">
+        <div className="row justify-content-start gx-2">
+          {
+            tagList.map((tag) => {
+              return (<div className="col-auto lead-sm bg-light border me-1 p-1" key={props.student.id + "-" + tag}>
+                {tag}
+              </div>)
+            })
+          }
+        </div>
+      </div>
+      <div style={{width: "125px"}}>
+        <input
+          type="text"
+          id="typeText"
+          className="form-control border-bottom"
+          placeholder="Add a tag"
+          style={{border: "none"}}
+        />
+      </div>
+    </div>
+
+  </div>);
 }
 
 export default Student;
