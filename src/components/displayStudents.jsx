@@ -8,12 +8,15 @@ const DisplayStudents = (props) => {
   * props: students, studentTags, saveTag
   */
 
-  if (props.students == undefined) {return null}
+  if (props.students == undefined) {return <div>Loading Students...</div>}
 
   return (
     <React.Fragment>
     {
       props.students.map((student,index) => {
+
+        if (!props.filter.includes(student.id)) {return null} //don't show student if the id of the student is not in the filter
+
         return (
           <Student
             key={student.id + "-" + index}
