@@ -42,7 +42,8 @@ const Student = (props) => {
     );
   }
 
-  return (<div className="d-flex">
+  return (
+    <div className="d-flex">
     <div className="justify-content-end mt-2">
       <img src={props.student.pic} className="rounded-circle border" alt="avatar" width="150" height="150"/>
     </div>
@@ -89,7 +90,7 @@ const Student = (props) => {
           onChange={(e) => setTagInput(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === "Enter") {
-              props.saveTag(e.target.value,props.student.id);
+              props.onSaveTag(e.target.value,props.student.id);
 
               setTagInput("");
               e.target.value = "";
