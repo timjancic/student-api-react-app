@@ -49,10 +49,7 @@ const Student = (props) => {
     </div>
     <div className="container">
       <div className="row justify-content-between">
-        <h1 className="col">{props.student.firstName}
-          {" "}
-          {props.student.lastName}
-        </h1>
+        <h1 className="col"><strong>{props.student.firstName.toUpperCase()}{" "}{props.student.lastName.toUpperCase()}</strong></h1>
         <button type="button" className="col-auto" onClick={handleShowGrades} style={{
             color: "darkgray",
             fontSize: "50px",
