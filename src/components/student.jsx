@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {useState, useEffect} from "react";
 
 const Student = (props) => {
-  const [tagList, setTagList] = useState(["tagTest1", "tagTest2"]);
   const [tagInput, setTagInput] = useState("");
   const [showGrades, setShowGrades] = useState(false);
 
@@ -16,17 +15,31 @@ const Student = (props) => {
   }
 
   function handleShowGrades() {
-    showGrades
-      ? setShowGrades(false)
-      : setShowGrades(true);
+    showGrades ? setShowGrades(false) : setShowGrades(true);
   }
 
   function getButtonClass() {
     let currentClass = (
-      showGrades
-      ? "list-unstyled px-1"
-      : "visually-hidden");
+      showGrades ? "list-unstyled px-1" : "visually-hidden");
     return currentClass;
+  }
+
+  function TagComponent(props) {
+    if (props.currentTagList == undefined) {
+      return null
+    }
+    return (
+      props.currentTagList.map((tag,index) => {
+        return (
+          <div
+          className="col-auto lead-sm bg-light border me-1 p-1"
+          key={props.currentid + "-" + index + "-" + tag}
+          >
+            {tag}
+          </div>
+        );
+      })
+    );
   }
 
   return (<div className="d-flex">
@@ -46,7 +59,7 @@ const Student = (props) => {
             border: "none",
             background: "white"
           }}>
-          {showGrades ? "-" : "+"}
+          <strong>{showGrades ? "-" : "+"}</strong>
         </button>
       </div>
 
@@ -58,28 +71,30 @@ const Student = (props) => {
         <ul className={getButtonClass()}>
           {
             props.student.grades.map((listValue, index) => {
-              return (<li key={listValue}>Test {index + 1}: {listValue}%</li>)
+              return (<li key={props.student.id + "-" + index + "-" + listValue}>Test {index + 1}: {listValue}%</li>)
             })
           }
         </ul>
       </div>
       <div className="container mb-2">
         <div className="row justify-content-start gx-2">
-          {
-            tagList.map((tag) => {
-              return (<div className="col-auto lead-sm bg-light border me-1 p-1" key={props.student.id + "-" + tag}>
-                {tag}
-              </div>)
-            })
-          }
+          <TagComponent currentTagList={props.tagList} currentid={props.student.id}/>
         </div>
       </div>
       <div style={{width: "125px"}}>
         <input
           type="text"
-          id="typeText"
           className="form-control border-bottom"
           placeholder="Add a tag"
+          onChange={(e) => setTagInput(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              props.saveTag(e.target.value,props.student.id);
+
+              setTagInput("");
+              e.target.value = "";
+            }
+          }}
           style={{border: "none"}}
         />
       </div>
