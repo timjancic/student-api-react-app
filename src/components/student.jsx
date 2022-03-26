@@ -25,7 +25,7 @@ const Student = (props) => {
 
   function handleShowGrades() {
     //switch showGrades value
-    showGrades ? setShowGrades(false) : setShowGrades(true);
+    setShowGrades(!showGrades);
   }
 
   function getGradesClass() {
@@ -62,7 +62,12 @@ const Student = (props) => {
   return (
     <div className="d-flex">
     <div className="justify-content-end mt-2" style={{width: "20%"}}>
-      <img src={props.student.pic} className="rounded-circle border" alt="avatar" style={{objectFit: "contain", width: "100%", maxWidth: "150px"}}/>
+      <img
+        src={props.student.pic}
+        className="rounded-circle border"
+        alt="avatar"
+        style={{objectFit: "contain", width: "100%", maxWidth: "150px"}}
+      />
     </div>
     <div className="container" style={{maxWidth: "80%"}}>
       <div className="row justify-content-between">

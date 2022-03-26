@@ -62,7 +62,7 @@ function App() {
     /*
     * this effect is attached to nameFilter and tagFilter and
     * updates which students are shown based on the filters present in
-    * the search bars
+    * the search bars. Performs simple linear search.
     */
 
     let tempFilter = []; //list of ids
