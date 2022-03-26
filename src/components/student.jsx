@@ -32,7 +32,11 @@ const Student = (props) => {
       props.currentTagList.map((tag,index) => {
         return (
           <div
-          className="col-auto lead-sm bg-light border me-1 p-1"
+          className="col-auto border me-1 p-2"
+          style={{
+            background: "#D9D9D9",
+            borderRadius: "6px"
+          }}
           key={props.currentid + "-" + index + "-" + tag}
           >
             {tag}
@@ -54,19 +58,12 @@ const Student = (props) => {
         >
           <strong>{props.student.firstName.toUpperCase()}{" "}{props.student.lastName.toUpperCase()}</strong>
         </h1>
-        <button type="button" className="col-auto" onClick={handleShowGrades} style={{
-            color: "darkgray",
-            fontSize: "50px",
-            fontFamily: "monospace",
-            lineHeight: "50px",
-            border: "none",
-            background: "white"
-          }}>
+        <button type="button" className="col-auto gradeViewBtn" onClick={handleShowGrades}>
           <strong>{showGrades ? "-" : "+"}</strong>
         </button>
       </div>
 
-      <div className="px-4 ralewayFont">
+      <div className="mx-4 ralewayFont">
         <p className="my-0">Email: {props.student.email}</p>
         <p className="my-0">Company: {props.student.company}</p>
         <p className="my-0">Skill: {props.student.skill}</p>
@@ -74,17 +71,17 @@ const Student = (props) => {
         <ul className={getGradesClass()}>
           {
             props.student.grades.map((listValue, index) => {
-              return (<li key={props.student.id + "-" + index + "-" + listValue}>Test {index + 1}: {listValue}%</li>)
+              return (<li style={{lineHeight: "1.1"}} key={props.student.id + "-" + index + "-" + listValue}>Test {index + 1}: <span className="ms-4">{listValue}%</span></li>)
             })
           }
         </ul>
       </div>
       <div className="container mb-2">
-        <div className="row justify-content-start gx-2 ralewayFont">
+        <div className="row justify-content-start gx-2 mx-3 ralewayFont">
           <TagComponent currentTagList={props.tagList} currentid={props.student.id}/>
         </div>
       </div>
-      <div style={{width: "125px"}}>
+      <div className="ms-3" style={{width: "125px"}}>
         <input
           type="text"
           className="form-control border-bottom ralewayFont"
