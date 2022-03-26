@@ -18,7 +18,7 @@ const Student = (props) => {
     showGrades ? setShowGrades(false) : setShowGrades(true);
   }
 
-  function getButtonClass() {
+  function getGradesClass() {
     let currentClass = (
       showGrades ? "list-unstyled px-1" : "visually-hidden");
     return currentClass;
@@ -49,10 +49,15 @@ const Student = (props) => {
     </div>
     <div className="container">
       <div className="row justify-content-between">
-        <h1 className="col"><strong>{props.student.firstName.toUpperCase()}{" "}{props.student.lastName.toUpperCase()}</strong></h1>
+        <h1
+          className="col ralewayFont"
+        >
+          <strong>{props.student.firstName.toUpperCase()}{" "}{props.student.lastName.toUpperCase()}</strong>
+        </h1>
         <button type="button" className="col-auto" onClick={handleShowGrades} style={{
             color: "darkgray",
             fontSize: "50px",
+            fontFamily: "monospace",
             lineHeight: "50px",
             border: "none",
             background: "white"
@@ -61,12 +66,12 @@ const Student = (props) => {
         </button>
       </div>
 
-      <div className="px-4 lead">
+      <div className="px-4 ralewayFont">
         <p className="my-0">Email: {props.student.email}</p>
         <p className="my-0">Company: {props.student.company}</p>
         <p className="my-0">Skill: {props.student.skill}</p>
         <p className="my-0 mb-1">Average: {calculateAverage(props.student.grades)}%</p>
-        <ul className={getButtonClass()}>
+        <ul className={getGradesClass()}>
           {
             props.student.grades.map((listValue, index) => {
               return (<li key={props.student.id + "-" + index + "-" + listValue}>Test {index + 1}: {listValue}%</li>)
@@ -75,14 +80,14 @@ const Student = (props) => {
         </ul>
       </div>
       <div className="container mb-2">
-        <div className="row justify-content-start gx-2">
+        <div className="row justify-content-start gx-2 ralewayFont">
           <TagComponent currentTagList={props.tagList} currentid={props.student.id}/>
         </div>
       </div>
       <div style={{width: "125px"}}>
         <input
           type="text"
-          className="form-control border-bottom"
+          className="form-control border-bottom ralewayFont"
           placeholder="Add a tag"
           onChange={(e) => setTagInput(e.target.value)}
           onKeyPress={(e) => {

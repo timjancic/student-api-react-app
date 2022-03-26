@@ -10,14 +10,14 @@ const SearchBar = (props) => {
       <input
         type="text"
         placeholder="Search by name"
-        className="form-control border-bottom my-2"
+        className="form-control border-bottom my-2 ralewayFont"
         style={{border: "none"}}
         onChange={(e) => {
             props.onNameFilterChange(e.target.value)
           }
         }
       />
-      
+
       <input
         type="text"
         placeholder="Search by tag"
