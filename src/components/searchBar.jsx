@@ -1,9 +1,15 @@
-import React, {Component} from 'react';
-import {useState, useEffect} from "react";
+import React from 'react';
+import {useState} from "react";
 
 const SearchBar = (props) => {
-  const [nameField,setNameField] = useState("");
-  const [tagField,setTagField] = useState("");
+  /*
+  * This component hosts both the name search bar and the tag search bar. It doesn't store anything locally
+  * but passes whatever the value is to the parent component
+  *
+  * props:
+  *   onNameFilterChange: links to handleNameFilterChange, passes the value of the name search bar to that function
+  *   onTagFilterChanges: Links to handleTagFilterChange, passes the value of the tag search bar to that function
+  */
 
   return (
     <React.Fragment>

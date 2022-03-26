@@ -1,9 +1,18 @@
-import React, {Component} from 'react';
-import {useState, useEffect} from "react";
+import React from 'react';
+import {useState} from "react";
 
 const Student = (props) => {
-  const [tagInput, setTagInput] = useState("");
-  const [showGrades, setShowGrades] = useState(false);
+  /*
+  * This component takes data for a single student and displays it. It also calcuates the average of the student's grades
+  *
+  * props:
+  *   student: an object with most of the student data needed.
+  *   tagList: an array of the tags that are associated with this student
+  *   onSaveTag: This passes the student id and new tag string to handleSaveTag function
+  */
+
+  const [tagInput, setTagInput] = useState(""); //stores the current tag input from the tag input field
+  const [showGrades, setShowGrades] = useState(false); //stores whether we are showing or hiding the grades, default we are not showing the grades
 
   function calculateAverage(nums) {
     let sum = 0;
@@ -15,16 +24,19 @@ const Student = (props) => {
   }
 
   function handleShowGrades() {
+    //switch showGrades value
     showGrades ? setShowGrades(false) : setShowGrades(true);
   }
 
   function getGradesClass() {
+    //show or hide grades depending on showGrades value
     let currentClass = (
       showGrades ? "list-unstyled px-1" : "visually-hidden");
     return currentClass;
   }
 
   function TagComponent(props) {
+    //if currentTagList hasn't loaded yet, then return nothing. Otherwise return list of tags.
     if (props.currentTagList == undefined) {
       return null
     }
@@ -35,7 +47,8 @@ const Student = (props) => {
           className="col-auto border me-1 p-2"
           style={{
             background: "#D9D9D9",
-            borderRadius: "6px"
+            borderRadius: "6px",
+            overflow: "hidden"
           }}
           key={props.currentid + "-" + index + "-" + tag}
           >
@@ -48,14 +61,12 @@ const Student = (props) => {
 
   return (
     <div className="d-flex">
-    <div className="justify-content-end mt-2">
-      <img src={props.student.pic} className="rounded-circle border" alt="avatar" width="150" height="150"/>
+    <div className="justify-content-end mt-2" style={{width: "20%"}}>
+      <img src={props.student.pic} className="rounded-circle border" alt="avatar" style={{objectFit: "contain", width: "100%", maxWidth: "150px"}}/>
     </div>
-    <div className="container">
+    <div className="container" style={{maxWidth: "80%"}}>
       <div className="row justify-content-between">
-        <h1
-          className="col ralewayFont"
-        >
+        <h1 className="col ralewayFont">
           <strong>{props.student.firstName.toUpperCase()}{" "}{props.student.lastName.toUpperCase()}</strong>
         </h1>
         <button type="button" className="col-auto gradeViewBtn" onClick={handleShowGrades}>

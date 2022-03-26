@@ -1,11 +1,16 @@
-import React, {Component} from 'react';
-import {useState, useEffect} from "react";
+import React from 'react';
+import {useState} from "react";
 import Student from './student.jsx';
 
 const DisplayStudents = (props) => {
-  /* This component displays all the students given by the parent component
+  /*
+  * This component takes all the students and displays the students according to the filter.
   *
-  * props: students, studentTags, saveTag
+  * props:
+  *   students: this is an array of objects where each object is a students data
+  *   studentTags: this is an object map that tells the student component which tags to display, if there are any for that student
+  *   saveTag: This passes the function call to the parent
+  *   filter: An array of student ids that tells this component which students to display
   */
 
   if (props.students == undefined) {return <div>Loading Students...</div>}
