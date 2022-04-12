@@ -107,7 +107,7 @@ function App() {
   return (
     <div className="vh-100 d-flex align-items-center" style={{background: "#f3f3f3"}}>
       {/*Container size is set to best match demo, but can easily be changed to a percentage of screen width/height*/}
-      <div className="container bg-white border rounded shadow" style={{maxWidth: "900px", height: "700px", overflowY: "scroll"}}>
+      <div className="container bg-white border rounded shadow studentContainer" style={{maxWidth: "900px"}}>
         <SearchBar
           onNameFilterChange={handleNameFilterChange}
           onTagFilterChange={handleTagFilterChange}

@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.studentContainer {
+  max-width: 900px;
+  height: 700px;
+  overflow-y: scroll;
+}
