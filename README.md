@@ -4,4 +4,4 @@ This project takes student data from a third party API and then display the info
 
 Try it out at: https://timjancic.github.io/student-api-react-app/
 
-The requirements for the assessment can be found here: https://storage.googleapis.com/hatchways-app.appspot.com/assessments/data/instructions/f-3/Front-end%20Assessment%20-%20Student%20Profiles-TLXROZXQZRK8IRJ2IUPT.pdf
+The requirements for the assessment can be found here: https://storage.googleapis.com/hatchways-app.appspot.com/assessments/data/frontend/f-3/99398f01-c407-4e28-a8bc-ccaa440b6353/f-2%20part5.webm
